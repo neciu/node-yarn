@@ -1,0 +1,20 @@
+module.exports = {
+  versions: [
+    '7.1.0',
+    '7.1',
+    '7',
+    '7.1.0-alpine',
+    '7.1-alpine',
+    '7-alpine',
+    '7.1.0-onbuild',
+    '7.1-onbuild',
+    '7-onbuild',
+    '7.1.0-slim',
+    '7.1-slim',
+    '7-slim',
+    '7.1.0-wheezy',
+    '7.1-wheezy',
+    '7-wheezy',
+  ],
+  latest: 'latest',
+};

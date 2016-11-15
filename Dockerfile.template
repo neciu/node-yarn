@@ -1,0 +1,7 @@
+FROM node:{{nodeVersion}}
+
+MAINTAINER Tomasz Netczuk
+
+RUN npm i -g yarn@{{yarnVersion}}
+RUN npm cache clean
+RUN yarn --version

@@ -1,0 +1,17 @@
+{
+  "name": "node-yarn",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:neciu/node-yarn.git",
+    "type": "git"
+  },
+  "author": "Tomasz Netczuk <contact@netczuk.pl>",
+  "license": "MIT",
+  "dependencies": {
+    "fs-path": "^0.0.22"
+  },
+  "scripts": {
+    "start": "node generate.js"
+  }
+}

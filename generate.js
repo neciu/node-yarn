@@ -1,21 +1,16 @@
 const fs = require('fs');
 const fsPath = require('fs-path');
+require('shelljs/global');
 const nodeVersions = require('./node-versions');
 const yarnVersions = require('./yarn-versions');
 
 
 const template = fs.readFileSync('./Dockerfile.template', 'utf8');
-flushDockerfiles();
 const dockerfilePermutations =
   getDockerfilePermutations(nodeVersions, yarnVersions);
 generateDockerfiles(template, dockerfilePermutations);
 console.info('Done.');
 
-
-function flushDockerfiles() {
-  // rimraf.sync('./dockerfiles');
-  fsPath.removeSync('./dockerfiles');
-}
 
 function getDockerfilePermutations() {
   let permutations = [];
@@ -33,22 +28,33 @@ function getDockerfilePermutations() {
 }
 
 function generateDockerfiles(template, dockerfilePermutations) {
+  exec('git tag --list | xargs git tag -d');
   generateLatestDockerfile(template, dockerfilePermutations);
+
+  for (versions of dockerfilePermutations.permutations) {
+    exec('git checkout --detach');
+    const { nodeVersion, yarnVersion } = versions;
+    const path = `./Dockerfile`;
+    generateDockerfile(path, template, nodeVersion, yarnVersion);
+    exec('git add ./Dockerfile');
+    exec(`git commit -m 'node-${nodeVersion}-yarn-${yarnVersion}'`);
+    exec(`git tag 'node-${nodeVersion}-yarn-${yarnVersion}'`);
+    exec('git checkout master');
+  }
 }
 
 function generateLatestDockerfile(template, dockerfilePermutations) {
+  exec('git checkout --detach');
   generateDockerfile(
-    './dockerfiles/Dockerfile',
+    './Dockerfile',
     template,
     dockerfilePermutations.latest.nodeVersion,
     dockerfilePermutations.latest.yarnVersion
   );
-
-  for (versions of dockerfilePermutations.permutations) {
-    const { nodeVersion, yarnVersion } = versions;
-    const path = `./dockerfiles/${nodeVersion}/${yarnVersion}/Dockerfile`;
-    generateDockerfile(path, template, nodeVersion, yarnVersion);
-  }
+  exec('git add ./Dockerfile');
+  exec('git commit -m latest');
+  exec('git tag latest');
+  exec('git checkout master');
 }
 
 function generateDockerfile(path, template, nodeVersion, yarnVersion) {

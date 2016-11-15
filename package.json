@@ -9,7 +9,8 @@
   "author": "Tomasz Netczuk <contact@netczuk.pl>",
   "license": "MIT",
   "dependencies": {
-    "fs-path": "^0.0.22"
+    "fs-path": "^0.0.22",
+    "shelljs": "^0.7.5"
   },
   "scripts": {
     "start": "node generate.js"

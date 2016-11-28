@@ -1,3 +1,11 @@
+<p align="center">
+  <a href="https://hub.docker.com/r/netczuk/node-yarn/">
+    <img alt="node-yarn" src="https://raw.githubusercontent.com/Ghostium/node-yarn/master/node-yarn-docker-img-logo.png" width="600">
+  </a>
+</p>
+
+---
+
 ## Supported Node/Yarn versions
 List of supported versions:
 * [Node](./node-versions.js)

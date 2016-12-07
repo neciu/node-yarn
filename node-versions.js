@@ -1,6 +1,5 @@
 module.exports = {
   versions: [
-    '6.9',
     '7.2.0',
     '7.2',
     '7',

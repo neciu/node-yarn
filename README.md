@@ -1,3 +1,6 @@
+# This project is deprecated
+ This project is deprecated due to the fact that Node images now contain Yarn pre installed out of the box.
+
 <p align="center">
   <a href="https://hub.docker.com/r/netczuk/node-yarn/">
     <img alt="node-yarn" src="https://raw.githubusercontent.com/Ghostium/node-yarn/master/node-yarn-docker-img-logo.png" width="600">
